@@ -1,0 +1,93 @@
+// Angular Material
+::ng-deep {
+    .mat-mdc-card-content:last-child {
+      padding-bottom: 16px;
+      display: flex;
+      align-items: center;
+    }
+  
+    .mdc-card {
+      width: 50vh;
+    }
+  
+    .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+      background-color: #f3f3f3;
+      width: 45vh;
+      border: 2px solid gainsboro;
+    }
+  
+    .mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input {
+      color: var(--text-black);
+    }
+  
+    .mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label {
+      color: var(--text-black);
+    }
+  
+    .mat-mdc-raised-button.mat-primary {
+      --mdc-protected-button-container-color: var(--complementary-color);
+      --mdc-protected-button-label-text-color: var(--text-black);
+    }
+  }
+  
+  // Code CSS Angular Material
+  
+  .example-container mat-form-field + mat-form-field {
+    margin-left: 8px;
+  }
+  
+  .example-right-align {
+    text-align: right;
+  }
+  
+  input.example-right-align::-webkit-outer-spin-button,
+  input.example-right-align::-webkit-inner-spin-button {
+    display: none;
+  }
+  
+  // input.example-right-align {
+  //   -moz-appearance: textfield;
+  // }
+  
+  // Tag, Class and Div
+  
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary);
+  }
+  
+  .card {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #f3f3f3;
+    max-width: 50vh;
+  }
+  
+  // .custom-placeholder::placeholder {
+  //   color: var(--text-black); /* Cor desejada para o placeholder */
+  // }
+  
+  .email-container {
+    margin-top: 2vh;
+  }
+  
+  .password-container {
+    margin-top: 2vh;
+  }
+  
+  .password-forgot {
+    display: flex;
+    text-align: right;
+    align-items: right;
+    align-self: flex-end;
+    // margin-top: -2vh;
+    margin-bottom: 4vh;
+    font-size: 2vh;
+    cursor: pointer;
+  }
+  

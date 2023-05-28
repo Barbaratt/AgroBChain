@@ -1,0 +1,26 @@
+// Angular Material
+
+// Code CSS Angular Material
+.mat-mdc-tab.mdc-tab--active:hover .mdc-tab__text-label {
+  color: var(--text-black);
+}
+
+.mat-mdc-tab.mdc-tab--active .mdc-tab__text-label {
+  color: var(--text-black);
+}
+
+.mat-mdc-tab:hover .mdc-tab__text-label {
+  color: black;
+}
+
+// Tag, Class and Div
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+.dashboard-container {
+  height: 100vh;
+  border: 1px solid #555;
+}
