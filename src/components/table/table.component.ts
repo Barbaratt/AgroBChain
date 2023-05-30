@@ -32,7 +32,7 @@ export class TableComponent {
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   // private paginator: MatPaginator;
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor() {}
 

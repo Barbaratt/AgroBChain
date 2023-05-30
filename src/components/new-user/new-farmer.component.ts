@@ -2,22 +2,24 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
 import { CdkStep } from '@angular/cdk/stepper';
+import { UserService } from 'src/services/user.service';
 
 @Component({
-  selector: 'app-new-user',
-  templateUrl: './new-user.component.html',
-  styleUrls: ['./new-user.component.scss'],
+  selector: 'app-new-farmer',
+  templateUrl: './new-farmer.component.html',
+  styleUrls: ['./new-farmer.component.scss'],
 })
-export class NewUserComponent {
-  @ViewChild('stepper') stepper!: MatStepper;
+export class NewFarmerComponent {
+  @ViewChild('stepper') stepper: MatStepper;
 
-  public selectedStep!: CdkStep;
+  public selectedStep: CdkStep;
   public firstFormGroup: FormGroup;
   public secondFormGroup: FormGroup;
   public thirdFormGroup: FormGroup;
   public isLinear = false;
+  public user: any;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private userService: UserService) {
     // this.form = this.fb.group({
     this.firstFormGroup = this.fb.group({
       name: ['', Validators.required],
@@ -61,6 +63,15 @@ export class NewUserComponent {
   }
 
   public saveNewUser(): void {
-    console.log('Salvando');
+    this.userService.criarUsuario(this.user).subscribe(
+      (response) => {
+        console.log('Usuário criado com sucesso', response);
+        // Faça algo após a criação do usuário, como redirecionar para outra página
+      },
+      (error) => {
+        console.error('Erro ao criar usuário', error);
+        // Trate o erro de acordo com as suas necessidades
+      }
+    );
   }
 }
