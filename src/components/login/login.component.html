@@ -1,80 +1,77 @@
 <body>
-    <form [formGroup]="form">
-      <mat-card>
-        <mat-card-content class="card">
-          <div class="">
-            <div class="email-container">
-              <mat-form-field>
-                <mat-label>Email</mat-label>
-                <input
-                  matInput
-                  placeholder="pat@example.com"
-                  formControlName="email"
-                  required
-                />
-                <mat-error *ngIf="form.get('email')?.errors?.['required']"
-                  >Preencha seu email</mat-error
-                >
-                <mat-error
-                  *ngIf="
-                    form.get('email')?.hasError('invalidEmail') &&
-                    form.get('email')?.touched
-                  "
-                >
-                  Preencha um email válido</mat-error
-                >
-              </mat-form-field>
-            </div>
-  
-            <div class="password-container">
-              <mat-form-field>
-                <mat-label>Senha</mat-label>
-                <input
-                  id="password"
-                  name="password"
-                  formControlName="password"
-                  minlength="4"
-                  matInput
-                  [type]="hide ? 'password' : 'text'"
-                />
-                <button
-                  mat-icon-button
-                  matSuffix
-                  (click)="hide = !hide"
-                  [attr.aria-label]="'Hide password'"
-                  [attr.aria-pressed]="hide"
-                  required
-                >
-                  <mat-icon aria-hidden="false">{{
-                    hide ? "visibility_off" : "visibility"
-                  }}</mat-icon>
-                </button>
-                <mat-error
-                  *ngIf="form.get('password')?.value.length < 8 && !form.get('password')?.errors?.['required']"
-                  >A senha necessita de no mínimo 8 caracteres</mat-error
-                >
-                <mat-error *ngIf="form.get('password')?.errors?.['required']"
-                  >Preencha sua senha</mat-error
-                >
-              </mat-form-field>
-            </div>
+  <form [formGroup]="form">
+    <mat-card>
+      <mat-card-content class="card">
+        <div class="">
+          <div class="email-container">
+            <mat-form-field>
+              <mat-label>Email</mat-label>
+              <input
+                matInput
+                placeholder="pat@example.com"
+                formControlName="email"
+                required
+              />
+              <mat-error *ngIf="form.get('email')?.errors?.['required']"
+                >Preencha seu email</mat-error
+              >
+              <mat-error
+                *ngIf="
+                  form.get('email')?.hasError('invalidEmail') &&
+                  form.get('email')?.touched
+                "
+              >
+                Preencha um email válido</mat-error
+              >
+            </mat-form-field>
           </div>
-  
-          <span class="password-forgot" (click)="newAccount()">
-            Não possui conta ? Inscreva-se
-          </span>
-  
-  
-          <button mat-raised-button color="primary" (click)="onSubmit()">
-            Entrar
-          </button>
-  
-          <span class="password-forgot" (click)="forgotPassword()">
-            Esqueceu sua senha ?
-          </span>
-  
-        </mat-card-content>
-      </mat-card>
-    </form>
-  </body>
-  
+
+          <div class="password-container">
+            <mat-form-field>
+              <mat-label>Senha</mat-label>
+              <input
+                id="password"
+                name="password"
+                formControlName="password"
+                minlength="4"
+                matInput
+                [type]="hide ? 'password' : 'text'"
+              />
+              <button
+                mat-icon-button
+                matSuffix
+                (click)="hide = !hide"
+                [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide"
+                required
+              >
+                <mat-icon aria-hidden="false">{{
+                  hide ? "visibility_off" : "visibility"
+                }}</mat-icon>
+              </button>
+              <mat-error
+                *ngIf="form.get('password')?.value.length < 8 && !form.get('password')?.errors?.['required']"
+                >A senha necessita de no mínimo 8 caracteres</mat-error
+              >
+              <mat-error *ngIf="form.get('password')?.errors?.['required']"
+                >Preencha sua senha</mat-error
+              >
+            </mat-form-field>
+          </div>
+        </div>
+
+        <span class="password-forgot" (click)="newAccount()">
+          Não possui conta ? Inscreva-se
+        </span>
+
+        <button mat-raised-button color="primary" (click)="onSubmit()">
+          Entrar
+        </button>
+
+        <span class="password-forgot" (click)="forgotPassword()">
+          Esqueceu sua senha ?
+        </span>
+      </mat-card-content>
+    </mat-card>
+  </form>
+</body>
