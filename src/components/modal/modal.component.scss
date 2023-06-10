@@ -1,12 +1,33 @@
-.material-symbols-outlined {
+// Styles from Angular Material
+
+::ng-deep {
+  .mat-dialog-actions .mat-button-base + .mat-button-base,
+  .mat-dialog-actions .mat-mdc-button-base + .mat-mdc-button-base {
+    padding: 20px;
+    margin: 10px;
+  }
+}
+
+// Classes from Angular Material
+.material-symbols-outlined-close {
   cursor: pointer;
   display: flex;
   justify-content: right;
-  align-content: right;
+  font-family: "Material Symbols Outlined";
+  font-style: normal;
+  font-size: 24px;
 }
 
-.content-modal, .title-modal {
-    display: flex;
-    justify-content: center;
-    align-content: center;
+// Other Classes
+.button {
+  padding: 20px;
+  margin: 10px;
+}
+
+.content-modal,
+.title-modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
 }

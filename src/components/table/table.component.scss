@@ -1,3 +1,14 @@
+::ng-deep {
+  .mat-paginator-container {
+    justify-content: center;
+  }
+
+  .material-symbols-outlined {
+    cursor: pointer;
+  }
+}
+
+// From Angular Material
 table {
   width: 100%;
 }

@@ -1,42 +1,84 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-  { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-  { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-  { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-  { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-];
+import { ModalAddProductsComponent } from '../modal-add-products/modal-add-products.component';
+import { IProductsFarmer } from 'src/app/models/list-farmer.model';
+import { FarmerService } from 'src/services/farmer/farmer.service';
+import { ModalDeleteComponent } from '../modal-delete/modal-delete.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
 })
-export class TableComponent {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-  // private paginator: MatPaginator;
+export class TableComponent implements OnInit {
+  public farmerProduct: IProductsFarmer;
+
+  displayedColumns: string[] = [
+    'position',
+    'name',
+    'amount',
+    'price',
+    'actions',
+  ];
+
+  dataSource = new MatTableDataSource<IProductsFarmer>([]);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor() {}
+  constructor(
+    public dialog: MatDialog,
+    private farmerService: FarmerService,
+    private router: Router
+  ) {}
+
+  ngOnInit(): void {
+    this.getProductsList();
+  }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+  }
+
+  public addProduct(): void {
+    const dialogRef = this.dialog.open(ModalAddProductsComponent, {});
+
+    dialogRef.afterClosed().subscribe((result) => {
+      // To Update the list, mesmo que coloque algo,
+      // somente com a função de salvar que irá
+      // Para futuros rascunho, isso será super útil.
+      console.log('Produto adicionado com sucesso !');
+      this.getProductsList();
+    });
+  }
+
+  public getProductsList(): void {
+    this.farmerService.getProductsList().subscribe((res) => {
+      this.dataSource.data = res;
+    });
+  }
+
+  public editProduct(id: IProductsFarmer): void {
+    this.router.navigate([`/dashboard/edit-products-farmer/${id}`]);
+  }
+
+  public deleteProduct(farmerProduct: IProductsFarmer): void {
+    const dialogRef = this.dialog.open(ModalDeleteComponent, {
+      data: {
+        // CUIDADO COM AQUI
+        // SE TIVER MAIS NA INTERFACE, TEM QUE POR AQUI PARA OUTRAS MODAIS
+        id: farmerProduct.id,
+        name: farmerProduct.name,
+        price: farmerProduct.price,
+        amount: farmerProduct.amount,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      // Talvez algum aviso futuro
+      console.log('The dialog was closed');
+    });
   }
 }

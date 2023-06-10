@@ -1,0 +1,28 @@
+{
+  "produtos": [
+    {
+      "name": "Arrozes",
+      "amount": 4,
+      "price": 4,
+      "id": 13
+    },
+    {
+      "name": "Rabanete",
+      "amount": 92,
+      "price": 2,
+      "id": 14
+    },
+    {
+      "name": "Alface",
+      "amount": 222,
+      "price": 32,
+      "id": 15
+    },
+    {
+      "name": "Cenoura",
+      "amount": 3232,
+      "price": 34,
+      "id": 16
+    }
+  ]
+}

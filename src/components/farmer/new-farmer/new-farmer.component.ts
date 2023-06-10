@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
 import { CdkStep } from '@angular/cdk/stepper';
-import { UserService } from 'src/services/user.service';
 
 @Component({
   selector: 'app-new-farmer',
@@ -19,7 +18,7 @@ export class NewFarmerComponent {
   public isLinear = false;
   public user: any;
 
-  constructor(private fb: FormBuilder, private userService: UserService) {
+  constructor(private fb: FormBuilder) {
     // this.form = this.fb.group({
     this.firstFormGroup = this.fb.group({
       name: ['', Validators.required],
@@ -62,16 +61,18 @@ export class NewFarmerComponent {
     }
   }
 
-  public saveNewUser(): void {
-    this.userService.criarUsuario(this.user).subscribe(
-      (response) => {
-        console.log('Usuário criado com sucesso', response);
-        // Faça algo após a criação do usuário, como redirecionar para outra página
-      },
-      (error) => {
-        console.error('Erro ao criar usuário', error);
-        // Trate o erro de acordo com as suas necessidades
-      }
-    );
-  }
+  public saveNewUser(): void {}
+
+  // public saveNewUser(): void {
+  //   this.userService.criarUsuario(this.user).subscribe(
+  //     (response) => {
+  //       console.log('Usuário criado com sucesso', response);
+  //       // Faça algo após a criação do usuário, como redirecionar para outra página
+  //     },
+  //     (error) => {
+  //       console.error('Erro ao criar usuário', error);
+  //       // Trate o erro de acordo com as suas necessidades
+  //     }
+  //   );
+  // }
 }

@@ -64,7 +64,7 @@
     align-items: center;
     flex-direction: column;
     justify-content: center;
-    background-color: #f3f3f3;
+    // background-color: #f3f3f3;
     max-width: 50vh;
   }
   
@@ -79,13 +79,17 @@
   .password-container {
     margin-top: 2vh;
   }
+
+  .button-enter {
+    width: 30vh;
+  }
   
   .password-forgot {
     display: flex;
     text-align: right;
     align-items: right;
     align-self: flex-end;
-    // margin-top: -2vh;
+    margin-top: 1vh;
     margin-bottom: 4vh;
     font-size: 2vh;
     cursor: pointer;
