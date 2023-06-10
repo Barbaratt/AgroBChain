@@ -3,12 +3,23 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { LoginComponent } from '../components/login/login.component';
 import { DashboardComponent } from '../components/dashboard/dashboard.component';
-import { ModalComponent } from 'src/components/modal/modal.component';
-import { NewFarmerComponent } from 'src/components/new-user/new-farmer.component';
+import { NewFarmerComponent } from 'src/components/farmer/new-farmer/new-farmer.component';
+import { EditProductsFarmerComponent } from 'src/components/farmer/edit-products-farmer/edit-products-farmer.component';
+import { TableComponent } from 'src/components/table/table.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
-  { path: 'dashboard', component: DashboardComponent },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    children: [
+      { path: '', component: TableComponent },
+      {
+        path: 'edit-products-farmer/:id',
+        component: EditProductsFarmerComponent,
+      },
+    ],
+  },
   { path: 'new-farmer', component: NewFarmerComponent },
 ];
 

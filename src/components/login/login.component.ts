@@ -2,7 +2,6 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { emailValidator } from './../../validators/email.validator';
-import { UserService } from 'src/services/user.service';
 import { Observable } from 'rxjs';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ModalComponent } from '../modal/modal.component';
@@ -27,8 +26,7 @@ export class LoginComponent implements OnInit {
     public dialog: MatDialog,
     private location: Location,
     private router: Router,
-    private fb: FormBuilder,
-    private userService: UserService
+    private fb: FormBuilder
   ) {
     this.form = this.fb.group({
       email: ['', [Validators.required, emailValidator()]],
@@ -51,14 +49,6 @@ export class LoginComponent implements OnInit {
       height: '400px',
       width: '600px',
     });
-    //   DialogOverviewExampleDialog, {
-    //   data: { name: this.name, animal: this.animal },
-    // }
-
-    // dialogRef.afterClosed().subscribe((result) => {
-    //   console.log('tá no login');
-    //   this.location.back();
-    // });
   }
 
   public forgotPassword(): void {

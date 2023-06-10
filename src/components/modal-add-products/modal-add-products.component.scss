@@ -1,0 +1,28 @@
+// Classes from Angular Material
+.material-symbols-outlined-close {
+  cursor: pointer;
+  display: flex;
+  justify-content: right;
+  font-family: "Material Symbols Outlined";
+  font-style: normal;
+  font-size: 24px;
+}
+
+// Classes and ID
+.required-fields {
+  font-weight: bold;
+  font-size: 10px;
+}
+
+.example-right-align {
+  text-align: right;
+}
+
+input.input-price::-webkit-outer-spin-button,
+input.input-price::-webkit-inner-spin-button {
+  display: none;
+}
+
+input.input-price {
+  -moz-appearance: textfield;
+}

@@ -1,48 +1,16 @@
 <mat-drawer-container class="dashboard-container">
-  <!-- <mat-toolbar>
-      <button
-        mat-icon-button
-        class="example-icon"
-        aria-label="Example icon-button with menu icon"
-      >
-        <mat-icon>menu</mat-icon>
-        <mat-drawer mode="side" opened>
-          <mat-list role="list">
-            <mat-list-item role="listitem"
-              ><a href="">Editar Perfil</a></mat-list-item
-            >
-            <mat-list-item role="listitem"><a href="">Name</a></mat-list-item>
-            <mat-list-item role="listitem"><a href="">Item 3</a></mat-list-item>
-            <mat-list-item role="listitem"><a href="">Item 3</a></mat-list-item>
-            <mat-list-item role="listitem"><a href="">Item 3</a></mat-list-item>
-            <mat-list-item role="listitem"><a href="">Item 3</a></mat-list-item>
-          </mat-list>
-        </mat-drawer>
-      </button>
-      <span>My App</span>
-    </mat-toolbar> -->
-
   <mat-drawer mode="side" opened>
-    <mat-list role="list">
-      <mat-list-item role="listitem"
-        ><a href="">Editar Perfil</a></mat-list-item
-      >
-      <mat-list-item role="listitem"><a href="">Name</a></mat-list-item>
-      <mat-list-item role="listitem"><a href="">Item 3</a></mat-list-item>
-      <mat-list-item role="listitem"><a href="">Item 3</a></mat-list-item>
-      <mat-list-item role="listitem"><a href="">Item 3</a></mat-list-item>
-      <mat-list-item role="listitem"><a href="">Item 3</a></mat-list-item>
-    </mat-list>
+    <app-sidebar-profile></app-sidebar-profile>
   </mat-drawer>
 
   <mat-drawer-content>
     <nav>
       <mat-tab-group dynamicHeight>
         <mat-tab label="First">
-          <app-table></app-table>
+          <router-outlet></router-outlet>
         </mat-tab>
         <mat-tab label="Second">
-         <app-grafics></app-grafics>
+          <app-grafics></app-grafics>
         </mat-tab>
         <mat-tab label="Third">
           <a href="">Content 3</a>

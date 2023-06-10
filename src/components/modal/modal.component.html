@@ -3,17 +3,37 @@
     rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
   />
-  <span class="material-symbols-outlined" (click)="close()"> close </span>
+  <span class="material-symbols-outlined-close" (click)="close()"> close </span>
   <p class="title-modal">Você se encontra em qual categoria ?</p>
 </div>
 <div mat-dialog-actions class="content-modal">
-  <button mat-raised-button color="primary" (click)="pageToSeller()">
+  <button
+    mat-raised-button
+    color="primary"
+    class="button"
+    (click)="pageToSeller()"
+  >
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+    />
+    <span class="material-symbols-outlined"> person </span>
     Vendedor
   </button>
   <button mat-raised-button color="accent" (click)="pageToFarmer()">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <span class="material-symbols-outlined"> agriculture </span>
     Agricultor
   </button>
   <button mat-raised-button color="warn" (click)="pageToBusiness()">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <span class="material-symbols-outlined"> store </span>
     Comércio
   </button>
 </div>

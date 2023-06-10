@@ -25,3 +25,13 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## DB.JSON
+
+No momento estamos utilizando um CRUD simples, de simulação para BackEnd. Para poder utiliza-lo, cole em seu terminal:
+
+json-server --watch db.json
+
+Padrão do endereço: localhost:3000
+
+Utilize junto ao rodar o projeto para obter os dados de listagem, gráficos e entre outros.

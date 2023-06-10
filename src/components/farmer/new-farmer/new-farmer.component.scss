@@ -1,0 +1,19 @@
+// Origin Angular Material
+::ng-deep {
+  .mat-form-field-appearance-legacy .mat-form-field-infix {
+    padding: 20px;
+    margin: 20px;
+  }
+}
+
+// Classes Angular Material
+.mat-mdc-form-field {
+  margin-top: 16px;
+  padding: 0 10px;
+}
+
+//Classes or ID
+.footer-navigate {
+  display: flex;
+  justify-content: space-between;
+}
