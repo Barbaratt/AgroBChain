@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ModalAddProductsComponent } from '../modal-add-products/modal-add-products.component';
-import { IProductsFarmer } from 'src/app/models/list-farmer.model';
+import { IProductsFarmer } from 'src/app/interfaces/list-farmer.model';
 import { FarmerService } from 'src/services/farmer/farmer.service';
 import { ModalDeleteComponent } from '../modal-delete/modal-delete.component';
 import { Router } from '@angular/router';
@@ -17,7 +17,7 @@ export class TableComponent implements OnInit {
   public farmerProduct: IProductsFarmer;
 
   displayedColumns: string[] = [
-    'position',
+    // 'position',
     'name',
     'amount',
     'price',
@@ -49,7 +49,6 @@ export class TableComponent implements OnInit {
       // To Update the list, mesmo que coloque algo,
       // somente com a função de salvar que irá
       // Para futuros rascunho, isso será super útil.
-      console.log('Produto adicionado com sucesso !');
       this.getProductsList();
     });
   }
@@ -69,16 +68,18 @@ export class TableComponent implements OnInit {
       data: {
         // CUIDADO COM AQUI
         // SE TIVER MAIS NA INTERFACE, TEM QUE POR AQUI PARA OUTRAS MODAIS
+        // PRECISA DO ID PARA O SERVIÇO SABER QUAL ID ESTÁ SENDO DELETADO
         id: farmerProduct.id,
         name: farmerProduct.name,
         price: farmerProduct.price,
         amount: farmerProduct.amount,
       },
+      height: '350px',
+      width: '400px',
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      // Talvez algum aviso futuro
-      console.log('The dialog was closed');
+      this.getProductsList();
     });
   }
 }

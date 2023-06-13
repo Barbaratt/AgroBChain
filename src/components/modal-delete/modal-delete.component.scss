@@ -1,3 +1,10 @@
+// Ng-Deep
+::ng-deep {
+  .mat-dialog-actions {
+    padding: 24px 0;
+  }
+}
+
 // Classes from Angular Material
 .material-symbols-outlined-close {
   cursor: pointer;
@@ -7,3 +14,10 @@
   font-style: normal;
   font-size: 24px;
 }
+
+// Classes and ID
+
+.title-modal {
+  margin: 2vh 0 6vh 0;
+}
+

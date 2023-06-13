@@ -1,3 +1,15 @@
+::ng-deep {
+  mat-form-field {
+    margin-left: 2vh;
+  }
+
+  
+  .mat-form-field-appearance-legacy .mat-form-field-infix {
+    padding: 0.4375em 0;
+    display: flex;
+  }
+}
+
 // Classes from Angular Material
 .material-symbols-outlined-close {
   cursor: pointer;
@@ -25,4 +37,9 @@ input.input-price::-webkit-inner-spin-button {
 
 input.input-price {
   -moz-appearance: textfield;
+}
+
+.button-confirm {
+  width: 60%;
+  margin: 0 20%;
 }

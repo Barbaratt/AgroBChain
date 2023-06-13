@@ -1,9 +1,16 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DialogData } from '../login/login.component';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { FarmerService } from 'src/services/farmer/farmer.service';
-import { IProductsFarmer } from 'src/app/models/list-farmer.model';
+import { IProductsFarmer } from 'src/app/interfaces/list-farmer.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-modal-add-products',
@@ -19,12 +26,13 @@ export class ModalAddProductsComponent implements OnInit {
     public dialogRef: MatDialogRef<ModalAddProductsComponent>,
     public farmerService: FarmerService,
     private fb: FormBuilder,
+    private snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) {
     this.form = this.fb.group({
       name: ['', [Validators.required]],
-      amount: ['', [Validators.required, Validators.min(1)]],
-      price: ['', [Validators.required, Validators.min(1)]],
+      amount: ['', [Validators.min(1), Validators.required]],
+      price: ['', [Validators.min(1), Validators.required]],
     });
   }
 
@@ -55,6 +63,11 @@ export class ModalAddProductsComponent implements OnInit {
       this.farmerService.createNewProduct(this.product).subscribe((res) => {
         if (res) {
           this.dialogRef.close();
+          this.snackBar.open('Produto adicionado com sucesso!', 'X', {
+            duration: 5000,
+            verticalPosition: 'top',
+            horizontalPosition: 'center',
+          });
         } else {
           // lançar um erro, talvez um catch error futuro
         }
