@@ -1,14 +1,53 @@
-* {
-    padding: 2vh;
+::ng-deep {
+  mat-form-field {
+    margin-left: 4vh;
+  }
+
+  .mat-form-field-appearance-legacy .mat-form-field-infix {
+    padding: 0.4375em 0;
+    display: flex;
+  }
+
+  .mat-form-field-wrapper.ng-tns-c88-3 {
+    margin: 20px 40px;
+  }
+
+  .ng-untouched.ng-pristine.ng-valid {
+    display: block;
+    margin: 0px 10px;
+  }
 }
 
 // Classes from Angular Material
 .material-symbols-outlined-close {
   cursor: pointer;
   display: flex;
-  justify-content: left;
+  justify-content: right;
   font-family: "Material Symbols Outlined";
   font-style: normal;
   font-size: 24px;
   padding: 2vh;
+}
+
+// Classes and ID
+
+.title-edit {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.required-fields {
+  margin: 0 2vh 0;
+  font-weight: bold;
+  font-size: 10px;
+}
+
+.forms-edit {
+  padding: 5vh 0vh;
+}
+
+.button-confirm {
+  width: 60%;
+  margin: 0 20%;
 }

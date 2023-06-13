@@ -40,7 +40,7 @@ import {
 } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 //Libs
 import { NgChartsModule } from 'ng2-charts';
 
@@ -83,6 +83,7 @@ import { NgChartsModule } from 'ng2-charts';
     MatStepperModule,
     NgChartsModule,
     MatPaginatorModule,
+    MatSnackBarModule,
   ],
   providers: [
     HttpClient,

@@ -1,10 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IProductsFarmer } from 'src/app/models/list-farmer.model';
+import { IProductsFarmer } from 'src/app/interfaces/list-farmer.model';
 import { BehaviorSubject, Observable, take, tap } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
+import { IVendas } from 'src/app/interfaces/data-grafics.model';
 
+const url = 'http://localhost:3000';
 @Injectable({
   providedIn: 'root',
 })
@@ -12,6 +14,7 @@ export class FarmerService {
   public product$: BehaviorSubject<IProductsFarmer[]> = new BehaviorSubject<
     IProductsFarmer[]
   >([]);
+
   constructor(private http: HttpClient) {}
 
   getProductsObservable(): Observable<IProductsFarmer[]> {
@@ -19,54 +22,33 @@ export class FarmerService {
   }
 
   public getProductsList(): Observable<IProductsFarmer[]> {
-    return this.http.get<IProductsFarmer[]>(`http://localhost:3000/produtos`);
+    return this.http.get<IProductsFarmer[]>(`${url}/produtos`);
   }
 
   public getProductsById(productId: number): Observable<IProductsFarmer[]> {
-    return this.http.get<IProductsFarmer[]>(
-      `http://localhost:3000/produtos/${productId}`
-    );
+    return this.http.get<IProductsFarmer[]>(`${url}/produtos/${productId}`);
   }
 
   public createNewProduct(
     productFarmer: IProductsFarmer
   ): Observable<IProductsFarmer[]> {
-    return this.http.post<IProductsFarmer[]>(
-      `http://localhost:3000/produtos`,
-      productFarmer
-    );
-  }
-
-  public updateProductList(products: IProductsFarmer[]): void {
-    this.product$.next(products);
+    return this.http.post<IProductsFarmer[]>(`${url}/produtos`, productFarmer);
   }
 
   public updateProduct(
     productId: number,
     product: IProductsFarmer
   ): Observable<IProductsFarmer> {
-    const url = `http://localhost:3000/produtos/${productId}`;
-    return this.http.put<IProductsFarmer>(url, product);
+    const contextUrl = `${url}/produtos/${productId}`;
+    return this.http.put<IProductsFarmer>(contextUrl, product);
   }
 
   public deleteProduct(productId: number): Observable<IProductsFarmer> {
-    return this.http.delete<IProductsFarmer>(
-      `http://localhost:3000/produtos/${productId}`
-    );
-    // .pipe(
-    //   // O uso do operador tap permite
-    //   // executar uma ação secundária após a exclusão bem-sucedida.
-    //   tap(() => {
-    //     const updatedProducts = this.product$.value.filter(
-    //       (product) => product.id !== productId
-    //     );
-    //     this.updateProductList(updatedProducts);
-    //   })
-    // );
+    return this.http.delete<IProductsFarmer>(`${url}/produtos/${productId}`);
   }
 
-  private handleError(error: any) {
-    console.error('An error occurred:', error);
-    // return throwError(error);
+  // Serviço para obter data dos gráficos
+  public getDataGrafics(): Observable<IVendas[]> {
+    return this.http.get<IVendas[]>(`${url}/dataGrafics`);
   }
 }

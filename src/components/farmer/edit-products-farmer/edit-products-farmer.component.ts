@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
-import { IProductsFarmer } from 'src/app/models/list-farmer.model';
+import { IProductsFarmer } from 'src/app/interfaces/list-farmer.model';
 import { FarmerService } from 'src/services/farmer/farmer.service';
 
 @Component({
@@ -44,6 +44,7 @@ export class EditProductsFarmerComponent implements OnInit {
       // Ele afeta o farmerService também, como o id por padrão é string,
       // precisa ser convertido para number, por isso.
       this.productId = Number(productId);
+      // Caso o ID for string num futuro, só não esquecer de mudar acima
       this.farmerService.getProductsById(productId).subscribe((product) => {
         /**
          *  atribui o objeto product à propriedade productsFarmer

@@ -1,11 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Chart } from 'chart.js';
-
-export interface ILabelsPieChart {
-  Vendas: string;
-}
-
-
+import { map } from 'rxjs';
+import { IVendas } from 'src/app/interfaces/data-grafics.model';
+import { FarmerService } from 'src/services/farmer/farmer.service';
 
 @Component({
   selector: 'app-grafics',
@@ -17,44 +14,60 @@ export interface ILabelsPieChart {
 export class GraficsComponent implements OnInit {
   public canvas: any;
   public ctx: any;
-  public pieChart: any;
-  public labelsChartPie = ['Apple', 'Google', 'Facebook', 'Infosys', 'Hp', 'Accenture'];
+  public barChart: any;
+  public labelNamesResult: any;
+  public labelAmountsResult: any;
 
-  @ViewChild('pieCanvas') pieCanvas: { nativeElement: any };
+  @ViewChild('barCanvas') barCanvas: { nativeElement: any };
 
-  constructor() {}
+  constructor(private farmerService: FarmerService) {}
 
   ngAfterViewInit(): void {
-    this.pieChartBrowser();
+    this.barChartBrowser();
   }
 
   ngOnInit(): void {}
 
-  public pieChartBrowser(): void {
-    this.canvas = this.pieCanvas.nativeElement;
+  public barChartBrowser(): void {
+    let chartColors = {
+      color1: 'rgba(234, 237, 44)',
+      color2: 'rgba(19, 101, 160)',
+      color3: 'rgba(102, 47, 182)',
+      color4: 'rgba(208, 23, 20)',
+      color5: 'rgba(15, 135, 33)',
+      color6: 'rgba(234, 237, 44)',
+    };
+
+    this.canvas = this.barCanvas.nativeElement;
     this.ctx = this.canvas.getContext('2d');
 
-    this.pieChart = new Chart(this.ctx, {
-      type: 'pie',
-      data: {
-        // Trocar depois por chamadas do back
-        labels: this.labelsChartPie,
-        // labels: ['Apple', 'Google', 'Facebook', 'Infosys', 'Hp', 'Accenture'],
-        datasets: [
-          {
-            backgroundColor: [
-              '#2ecc71',
-              '#3498db',
-              '#95a5a6',
-              '#9b59b6',
-              '#f1c40f',
-              '#e74c3c',
-            ],
-            // Trocar depois por chamadas do back
-            data: [12, 19, 3, 17, 28, 24],
-          },
-        ],
-      },
-    });
+    // O gráfico necessita estar dentro do serviço para poder pegar os dados
+    this.farmerService.getDataGrafics().subscribe((res) => {
+      this.labelNamesResult = res.map((item: IVendas) =>
+        item.name?.toUpperCase()
+      );
+      this.labelAmountsResult = res.map((item: IVendas) => item.amount);
+
+      this.barChart = new Chart(this.ctx, {
+        type: 'bar',
+        data: {
+          labels: this.labelNamesResult,
+          datasets: [
+            {
+              label: 'Vendas (R$)',
+              backgroundColor: [
+                chartColors.color1,
+                chartColors.color2,
+                chartColors.color3,
+                chartColors.color4,
+                chartColors.color5,
+                chartColors.color6,
+              ],
+              data: this.labelAmountsResult,
+            },
+          ],
+        },
+      });
+    }); //Final do serviço
   }
 }

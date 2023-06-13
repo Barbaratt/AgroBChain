@@ -6,9 +6,14 @@
   .material-symbols-outlined {
     cursor: pointer;
   }
+
+  ._mat-animation-noopable.mat-raised-button {
+    width: 100%;
+  }
 }
 
 // From Angular Material
 table {
   width: 100%;
 }
+

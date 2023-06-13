@@ -2,7 +2,7 @@
   "produtos": [
     {
       "name": "Arrozes",
-      "amount": 4,
+      "amount": 6,
       "price": 4,
       "id": 13
     },
@@ -23,6 +23,48 @@
       "amount": 3232,
       "price": 34,
       "id": 16
+    },
+    {
+      "name": "TYRTETE",
+      "amount": 22,
+      "price": 22,
+      "id": 17
+    },
+    {
+      "name": "teterte",
+      "amount": 22,
+      "price": 222,
+      "id": 18
+    },
+    {
+      "name": "RERER",
+      "amount": 7,
+      "price": 2323,
+      "id": 19
+    },
+    {
+      "name": "ASASAS",
+      "amount": 43,
+      "price": 44444,
+      "id": 20
+    }
+  ],
+  "dataGrafics": [
+    {
+      "name": "legumes",
+      "amount": 15
+    },
+    {
+      "name": "carne",
+      "amount": 70
+    },
+    {
+      "name": "verduras",
+      "amount": 30
+    },
+    {
+      "name": "adubo",
+      "amount": 60
     }
   ]
 }
