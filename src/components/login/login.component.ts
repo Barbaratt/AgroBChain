@@ -6,6 +6,8 @@ import { Observable } from 'rxjs';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ModalComponent } from '../modal/modal.component';
 import { Location } from '@angular/common';
+import { AuthService } from 'src/app/authentification/services/auth.service';
+import { IUser } from 'src/app/interfaces/user-login.model';
 
 export interface DialogData {
   animal: string;
@@ -20,13 +22,19 @@ export interface DialogData {
 export class LoginComponent implements OnInit {
   public hide: boolean = true;
   public form: FormGroup;
-  public novoUsuario: any = {};
+  public newUser: any = {};
+  // Aqui preciso ver melhor
+  private user: IUser = {
+    userId: '001',
+    email: 'pat@uol.com.br',
+    password: '12345678',
+  };
 
   constructor(
     public dialog: MatDialog,
-    private location: Location,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private authService: AuthService
   ) {
     this.form = this.fb.group({
       email: ['', [Validators.required, emailValidator()]],
@@ -38,10 +46,21 @@ export class LoginComponent implements OnInit {
 
   public onSubmit(): void {
     if (this.form.valid) {
-      this.router.navigate(['/dashboard']);
+      // this.router.navigate(['/dashboard']);
       // this.newAccount();
       //, { id: 123 }
+      this.authService.login(this.user);
+      localStorage.setItem(
+        'userData',
+        JSON.stringify({ email: this.user.email, id: this.user.id })
+      );
+      // localStorage.getItem({ email: this.user.email, id: this.user.id })
     }
+
+    // Auth Service
+    console.log(this.form.value as IUser);
+    // console.log(this.user);
+    // this.authService.login(this.user);
   }
 
   public newAccount(): void {

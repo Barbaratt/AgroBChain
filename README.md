@@ -35,3 +35,15 @@ json-server --watch db.json
 Padrão do endereço: localhost:3000
 
 Utilize junto ao rodar o projeto para obter os dados de listagem, gráficos e entre outros.
+
+## DB.JSON ROUTES
+
+Para rodar cada id, ou seja, ver se um id tem uma forma e outra, utilize esse comando:
+
+json-server db.json --routes routes.json
+## Usuário Temporário para acessar rotas
+
+Para acessar as outras rotas do projeto, use um email e senha para poder acessar, aqui está um exemplo padrão:
+
+email: pat@uol.com.br
+senha: 12345678

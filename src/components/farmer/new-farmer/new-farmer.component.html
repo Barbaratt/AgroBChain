@@ -1,120 +1,327 @@
-<!-- <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
-  {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
-</button> -->
 <mat-stepper [linear]="isLinear" #stepper>
+  <!-- ! DEPOIS DEIXAR ASSIM [linear]="!isLinear" -->
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
       <ng-template matStepLabel>Dados Pessoais</ng-template>
       <p>* Dados Obrigatórios</p>
       <mat-form-field>
-        <mat-label>Name</mat-label>
+        <mat-label>Nome</mat-label>
         <input
           matInput
-          placeholder="Last name, First name"
+          placeholder="Primeiro nome"
           formControlName="name"
           required
         />
         <mat-error *ngIf="firstFormGroup.get('name')?.errors?.['required']">
-          Name is required
+          Campo obrigatório
         </mat-error>
-        <!-- formControlName="name" -->
       </mat-form-field>
       <mat-form-field>
-        <mat-label>Gender</mat-label>
+        <mat-label>Sobrenome</mat-label>
         <input
           matInput
-          placeholder="Last name, First name"
-          formControlName="gender"
+          placeholder="Sobrenome completo"
+          formControlName="lastName"
           required
         />
+        <mat-error *ngIf="firstFormGroup.get('lastName')?.errors?.['required']">
+          Campo obrigatório
+        </mat-error>
+      </mat-form-field>
+
+      <section id="gender-radio">
+        <mat-radio-group formControlName="gender">
+          <p>Gênero</p>
+          <mat-radio-button value="1">Masculino</mat-radio-button>
+          <mat-radio-button value="2" class="last-option"
+            >Feminino</mat-radio-button
+          >
+          <mat-error
+            *ngIf="firstFormGroup.get('gender')?.invalid"
+            class="mat-error-radio"
+          >
+            Campo obrigatório
+          </mat-error>
+        </mat-radio-group>
+      </section>
+
+      <mat-form-field>
+        <mat-label>Documento de Identificação</mat-label>
+        <input
+          matInput
+          placeholder="RG ou CPF"
+          type="number"
+          formControlName="documentId"
+          onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
+          required
+        />
+        <mat-error
+          *ngIf="firstFormGroup.get('documentId')?.errors?.['required']"
+        >
+          Campo obrigatório
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>E-mail</mat-label>
+        <input matInput type="email" formControlName="email" required />
+        <mat-error *ngIf="firstFormGroup.get('email')?.errors?.['required']">
+          Campo obrigatório
+        </mat-error>
+        <mat-error *ngIf="firstFormGroup.get('email')?.errors?.email">
+          Insira um campo de e-mail válido
+        </mat-error>
       </mat-form-field>
       <mat-form-field>
-        <mat-label>Gender</mat-label>
-        <input matInput placeholder="Last name, First name" required />
+        <mat-label>Telefone</mat-label>
+        <input
+          matInput
+          type="number"
+          formControlName="telephoneNumber"
+          onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
+          required
+        />
+        <mat-error
+          *ngIf="firstFormGroup.get('telephoneNumber')?.errors?.['required']"
+        >
+          Campo obrigatório
+        </mat-error>
       </mat-form-field>
-      <mat-form-field>
-        <mat-label>Gender</mat-label>
-        <input matInput placeholder="Last name, First name" required />
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Gender</mat-label>
-        <input matInput placeholder="Last name, First name" required />
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperNext (click)="nextStep()">Next</button>
+
+      <div class="footer-navigate">
+        <button mat-button matStepperNext (click)="nextStep()">Próximo</button>
       </div>
     </form>
   </mat-step>
-  <mat-step [stepControl]="secondFormGroup" label="Fill out your address">
+
+  <mat-step [stepControl]="secondFormGroup" label="Endereço">
     <form [formGroup]="secondFormGroup">
       <mat-form-field>
-        <mat-label>Address</mat-label>
+        <mat-label>CEP</mat-label>
         <input
           matInput
-          formControlName="address"
-          placeholder="Ex. 1 Main St, New York, NY"
+          type="number"
+          formControlName="addressZipCode"
           required
         />
       </mat-form-field>
       <mat-form-field>
-        <mat-label>Address</mat-label>
-        <input matInput placeholder="Ex. 1 Main St, New York, NY" required />
+        <mat-label>Rua</mat-label>
+        <input matInput formControlName="addressStreet" required />
+        <mat-error
+          *ngIf="secondFormGroup.get('addressStreet')?.errors?.['required']"
+        >
+          Campo obrigatório
+        </mat-error>
       </mat-form-field>
       <mat-form-field>
-        <mat-label>Address</mat-label>
-        <input matInput placeholder="Ex. 1 Main St, New York, NY" required />
+        <mat-label>Número</mat-label>
+        <input
+          matInput
+          type="number"
+          formControlName="addressNumber"
+          onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
+          required
+        />
+        <mat-error
+          *ngIf="secondFormGroup.get('addressNumber')?.errors?.['required']"
+        >
+          Campo obrigatório
+        </mat-error>
       </mat-form-field>
       <mat-form-field>
-        <mat-label>Address</mat-label>
-        <input matInput placeholder="Ex. 1 Main St, New York, NY" required />
+        <mat-label>Complemento</mat-label>
+        <input
+          matInput
+          placeholder="Apto 01"
+          formControlName="addressComplement"
+        />
       </mat-form-field>
       <mat-form-field>
-        <mat-label>Address</mat-label>
-        <input matInput placeholder="Ex. 1 Main St, New York, NY" required />
+        <mat-label>Bairro</mat-label>
+        <input matInput formControlName="addressDistrict" required />
+        <mat-error
+          *ngIf="secondFormGroup.get('addressDistrict')?.errors?.['required']"
+        >
+          Campo obrigatório
+        </mat-error>
       </mat-form-field>
       <mat-form-field>
-        <mat-label>Address</mat-label>
-        <input matInput placeholder="Ex. 1 Main St, New York, NY" required />
+        <mat-label>Cidade</mat-label>
+        <input matInput formControlName="addressCity" required />
+        <mat-error
+          *ngIf="secondFormGroup.get('addressCity')?.errors?.['required']"
+        >
+          Campo obrigatório
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Estado</mat-label>
+        <input matInput formControlName="addressState" required />
+        <mat-error
+          *ngIf="secondFormGroup.get('addressState')?.errors?.['required']"
+        >
+          Campo obrigatório
+        </mat-error>
       </mat-form-field>
       <div class="footer-navigate">
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext (click)="nextStep()">Next</button>
+        <button mat-button matStepperPrevious>Voltar</button>
+        <button mat-button matStepperNext (click)="nextStep()">Próximo</button>
       </div>
     </form>
   </mat-step>
-  <mat-step [stepControl]="thirdFormGroup" label="Fill out your address">
+
+  <mat-step [stepControl]="thirdFormGroup" label="Propriedade Agrícola">
     <form [formGroup]="thirdFormGroup">
       <mat-form-field>
-        <mat-label>Address</mat-label>
+        <mat-label>Tamanho da propriedade</mat-label>
         <input
           matInput
-          formControlName="address"
-          placeholder="Ex. 1 Main St, New York, NY"
+          formControlName="propertySize"
+          placeholder="Em m² (metros quadrados)"
+          onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
           required
         />
+        <mat-error
+          *ngIf="thirdFormGroup.get('propertySize')?.errors?.['required']"
+        >
+          Campo obrigatório
+        </mat-error>
       </mat-form-field>
+
       <mat-form-field>
-        <mat-label>Address</mat-label>
-        <input matInput placeholder="Ex. 1 Main St, New York, NY" required />
+        <mat-label>Tipo de cultivo</mat-label>
+        <mat-select
+          #select
+          multiple
+          formControlName="cultivitationType"
+          required
+        >
+          <div class="select-all">
+            <mat-checkbox
+              [(ngModel)]="allSelected"
+              [ngModelOptions]="{ standalone: true }"
+              (change)="toggleAllSelection()"
+              >Selecionar Tudo</mat-checkbox
+            >
+          </div>
+          <mat-option
+            (click)="optionClick()"
+            *ngFor="let cultivationType of cultivationTypes"
+            [value]="cultivationType.value"
+          >
+            {{ cultivationType.viewValue }}
+          </mat-option>
+          <button (click)="addCultivationType()" class="buttonAddType">
+            Adicionar tipo de cultivo
+          </button>
+        </mat-select>
+        <mat-error
+          *ngIf="thirdFormGroup.get('cultivitationType')?.errors?.['required']"
+        >
+          Selecione ao menos uma opção
+        </mat-error>
       </mat-form-field>
+
       <mat-form-field>
-        <mat-label>Address</mat-label>
-        <input matInput placeholder="Ex. 1 Main St, New York, NY" required />
+        <mat-label>Principais produtos cultivados</mat-label>
+        <mat-select #select multiple formControlName="nourishment" required>
+          <div class="select-all">
+            <mat-checkbox
+              [(ngModel)]="allSelected"
+              [ngModelOptions]="{ standalone: true }"
+              (change)="toggleAllSelection()"
+              >Selecionar Tudo</mat-checkbox
+            >
+          </div>
+          <mat-option
+            (click)="optionClick()"
+            *ngFor="let nourishment of nourishments"
+            [value]="nourishment.value"
+          >
+            {{ nourishment.viewValue }}
+          </mat-option>
+          <button (click)="addNourishment()" class="buttonAddType">
+            Adicionar alimento em cultivo
+          </button>
+        </mat-select>
+        <mat-error
+          *ngIf="thirdFormGroup.get('nourishment')?.errors?.['required']"
+        >
+          Selecione ao menos uma opção
+        </mat-error>
       </mat-form-field>
+
       <mat-form-field>
-        <mat-label>Address</mat-label>
-        <input matInput placeholder="Ex. 1 Main St, New York, NY" required />
+        <mat-label>Métodos de cultivo utilizados</mat-label>
+        <mat-select
+          #select
+          multiple
+          formControlName="cultivationMethod"
+          required
+        >
+          <div class="select-all">
+            <mat-checkbox
+              [(ngModel)]="allSelected"
+              [ngModelOptions]="{ standalone: true }"
+              (change)="toggleAllSelection()"
+              >Selecionar Tudo</mat-checkbox
+            >
+          </div>
+          <mat-option
+            (click)="optionClick()"
+            *ngFor="let cultivationMethod of cultivationMethods"
+            [value]="cultivationMethod.value"
+          >
+            {{ cultivationMethod.viewValue }}
+          </mat-option>
+          <button (click)="addCultivationMethod()" class="buttonAddType">
+            Adicionar método de cultivo
+          </button>
+        </mat-select>
+        <mat-error
+          *ngIf="thirdFormGroup.get('cultivationMethod')?.errors?.['required']"
+        >
+          Selecione ao menos uma opção
+        </mat-error>
       </mat-form-field>
-      <mat-form-field>
-        <mat-label>Address</mat-label>
-        <input matInput placeholder="Ex. 1 Main St, New York, NY" required />
+
+      <mat-form-field class="equipaments">
+        <mat-label>Equipamentos ou maquinário agrícola utilizados</mat-label>
+        <mat-select
+          #select
+          multiple
+          formControlName="equipmentOrMachinery"
+          required
+        >
+          <div class="select-all">
+            <mat-checkbox
+              [(ngModel)]="allSelected"
+              [ngModelOptions]="{ standalone: true }"
+              (change)="toggleAllSelection()"
+              >Selecionar Tudo</mat-checkbox
+            >
+          </div>
+          <mat-option
+            (click)="optionClick()"
+            *ngFor="let equipmentOrMachinery of equipmentOrMachinerys"
+            [value]="equipmentOrMachinery.value"
+          >
+            {{ equipmentOrMachinery.viewValue }}
+          </mat-option>
+          <button (click)="addEquipamentOrMachinery()" class="buttonAddType">
+            Adicionar equipamento e/ou máquinário
+          </button>
+        </mat-select>
+        <mat-error
+          *ngIf="thirdFormGroup.get('equipmentOrMachinery')?.errors?.['required']"
+        >
+          Selecione ao menos uma opção
+        </mat-error>
       </mat-form-field>
-      <mat-form-field>
-        <mat-label>Address</mat-label>
-        <input matInput placeholder="Ex. 1 Main St, New York, NY" required />
-      </mat-form-field>
+
       <div class="footer-navigate">
-        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperPrevious>Voltar</button>
         <button mat-button matStepperNext (click)="saveNewUser()">
           Salvar
         </button>

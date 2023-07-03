@@ -1,0 +1,27 @@
+// Ng-Deep from Angular Material
+::ng-deep {
+  .mat-dialog-actions {
+    justify-content: center;
+    margin-top: 5vh;
+  }
+}
+
+// Classes from Angular Material
+.material-symbols-outlined-close {
+  cursor: pointer;
+  display: flex;
+  justify-content: right;
+  font-family: "Material Symbols Outlined";
+  font-style: normal;
+  font-size: 24px;
+}
+
+// Classes and ID
+
+.example-full-width {
+  width: 100%;
+}
+.button-confirm {
+  display: flex;
+  justify-content: center;
+}

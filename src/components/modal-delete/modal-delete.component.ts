@@ -11,10 +11,11 @@ import { FarmerService } from 'src/services/farmer/farmer.service';
   styleUrls: ['./modal-delete.component.scss'],
 })
 export class ModalDeleteComponent implements OnInit {
-  public id: IProductsFarmer;
+  // public id: IProductsFarmer;
   public productFarmers: IProductsFarmer;
   public productId: number;
   public product: any;
+  public id: string;
   products: IProductsFarmer[] = [];
   products$: Observable<IProductsFarmer[]>;
 
@@ -33,7 +34,7 @@ export class ModalDeleteComponent implements OnInit {
   }
 
   public getProductsList(): void {
-    this.farmerService.getProductsList();
+    this.farmerService.getProductsList(this.id);
   }
 
   public deleteProduct(productId: number): void {
