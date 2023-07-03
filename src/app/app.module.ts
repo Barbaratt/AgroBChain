@@ -15,6 +15,8 @@ import { ModalAddProductsComponent } from 'src/components/modal-add-products/mod
 import { ModalDeleteComponent } from 'src/components/modal-delete/modal-delete.component';
 import { EditProductsFarmerComponent } from 'src/components/farmer/edit-products-farmer/edit-products-farmer.component';
 import { SidebarProfileComponent } from 'src/components/sidebar-profile/sidebar-profile.component';
+import { AlertComponent } from 'src/components/alert/alert.component';
+import { ModalAddCultivationTypeComponent } from 'src/components/farmer/modal-add-cultivation-type/modal-add-cultivation-type/modal-add-cultivation-type.component';
 
 // Modules from Angular
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -36,13 +38,25 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import {
   MAT_DIALOG_DEFAULT_OPTIONS,
   MatDialogModule,
-  MatDialogRef,
 } from '@angular/material/dialog';
-import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+
 //Libs
 import { NgChartsModule } from 'ng2-charts';
+
+// Guards
+import { AuthGuard } from './authentification/helpers/auth.guard';
+import { FarmerGuard } from './authentification/helpers/farmer.guard';
+
+// Services
+import { AuthService } from 'src/app/authentification/services/auth.service';
+import { ModalAddCultivationMethodComponent } from 'src/components/farmer/modal-add-cultivation-method/modal-add-cultivation-method/modal-add-cultivation-method.component';
+import { ModalAddEquipamentMachineryComponent } from 'src/components/farmer/modal-add-equipament-machinery/modal-add-equipament-machinery/modal-add-equipament-machinery.component';
+import { ModalAddNourishmentComponent } from 'src/components/farmer/modal-add-nourishment/modal-add-nourishment/modal-add-nourishment.component';
 
 // import { NgxMaskDirective } from 'ngx-mask';
 // import { NgxMaskPipe } from 'ngx-mask/lib/ngx-mask.pipe';
@@ -61,6 +75,11 @@ import { NgChartsModule } from 'ng2-charts';
     ModalDeleteComponent,
     EditProductsFarmerComponent,
     SidebarProfileComponent,
+    AlertComponent,
+    ModalAddCultivationTypeComponent,
+    ModalAddCultivationMethodComponent,
+    ModalAddEquipamentMachineryComponent,
+    ModalAddNourishmentComponent,
   ],
   imports: [
     BrowserModule,
@@ -84,12 +103,17 @@ import { NgChartsModule } from 'ng2-charts';
     NgChartsModule,
     MatPaginatorModule,
     MatSnackBarModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatCheckboxModule,
   ],
   providers: [
     HttpClient,
-    // MatDialogRef,
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },
     // provideNgxMask(),
+    AuthService,
+    AuthGuard,
+    FarmerGuard,
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

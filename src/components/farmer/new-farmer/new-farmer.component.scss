@@ -6,14 +6,96 @@
   }
 }
 
+// Forcing all the forms being align
+::ng-deep,
+:host {
+  @media (max-width: 420px) {
+    .mat-form-field {
+      margin: 0 10vh 0 0;
+      padding: 0 5vh;
+    }
+
+    #gender-radio {
+      margin-top: 2vh;
+      padding: 0 8vh;
+    }
+  }
+  @media (min-width: 720px) {
+    .mat-form-field {
+      margin: 0 10vh 0 0;
+      padding: 0 8vh;
+    }
+    .mat-radio-group {
+      display: inline;
+    }
+  }
+}
+
+// ! REMOVE THE UP DOWN ARROW IN TYPE NUMBER FROM ANGULAR MATERIAL
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
 // Classes Angular Material
 .mat-mdc-form-field {
   margin-top: 16px;
   padding: 0 10px;
 }
 
+.mat-mdc-radio-button ~ .mat-mdc-radio-button {
+  margin-left: 16px;
+}
+
 //Classes or ID
+
+#gender-radio {
+  // background-color: red;
+  display: inline-flex;
+}
+
+.mat-error-radio {
+  margin-top: 2vh;
+}
+
+.last-option {
+  margin-left: 2vh;
+}
+
+.select-all {
+  margin: 5px 17px;
+}
+
+.buttonAddType {
+  width: 100%;
+  border: none;
+  background-color: #3f51b5;
+  color: whitesmoke;
+  padding: 2vh;
+  cursor: pointer;
+  // ! Ver se isso fica legal, ou melhor tirar e deixar lá para baixo sabe
+  position: fixed;
+  top: 6vh;
+}
+
 .footer-navigate {
+  margin-top: 3vh;
   display: flex;
   justify-content: space-between;
+}
+
+// Media Queries
+
+@media (max-width: 420px) {
+  #gender-radio {
+    margin-top: 2vh;
+    padding: 0 8vh;
+  }
 }
