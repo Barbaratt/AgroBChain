@@ -99,9 +99,14 @@
       <mat-form-field>
         <mat-label>CEP</mat-label>
         <input
+          #searchZipCode
           matInput
           type="number"
+          oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+          maxlength="8"
           formControlName="addressZipCode"
+          (input)="this.zipCode = searchZipCode.value"
+          (blur)="blur($event)"
           required
         />
       </mat-form-field>
