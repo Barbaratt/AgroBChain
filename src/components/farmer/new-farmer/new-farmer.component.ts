@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {
-  FormArray,
   FormBuilder,
   FormControl,
   FormGroup,
@@ -20,6 +19,7 @@ import { TypesService } from 'src/services/types.service';
 import { ModalAddCultivationMethodComponent } from '../modal-add-cultivation-method/modal-add-cultivation-method/modal-add-cultivation-method.component';
 import { ModalAddEquipamentMachineryComponent } from '../modal-add-equipament-machinery/modal-add-equipament-machinery/modal-add-equipament-machinery.component';
 import { ModalAddNourishmentComponent } from '../modal-add-nourishment/modal-add-nourishment/modal-add-nourishment.component';
+import { ZipCodeService } from 'src/services/searchZipCode/zip-code.service';
 
 @Component({
   selector: 'app-new-farmer',
@@ -37,20 +37,28 @@ export class NewFarmerComponent {
   public secondFormGroup: FormGroup;
   public thirdFormGroup: FormGroup;
   public isLinear = false;
-  public user: any;
   public allSelected = false;
 
-  cultivationTypes = this.typesService.getCultivationTypes();
-  cultivationMethods = this.typesService.getCultivationMethods();
-  equipmentOrMachinerys = this.typesService.getEquipmentOrMachinerys();
-  nourishments = this.typesService.getNourishments();
+  //* Dados do serviço do CEP
+  public zipCode: string;
+  public addressStreet?: string;
+  public addressDistrict?: string;
+  public addressCity?: string;
+  public addressState?: string;
+
+  //* Dados do serviço do tipos
+  public cultivationTypes = this.typesService.getCultivationTypes();
+  public cultivationMethods = this.typesService.getCultivationMethods();
+  public equipmentOrMachinerys = this.typesService.getEquipmentOrMachinerys();
+  public nourishments = this.typesService.getNourishments();
 
   constructor(
     public dialog: MatDialog,
     public typesService: TypesService,
-    private fb: FormBuilder,
     private farmerService: FarmerService,
+    private zipCodeService: ZipCodeService,
     private router: Router,
+    private fb: FormBuilder,
     private snackBar: MatSnackBar
   ) {
     this.firstFormGroup = this.fb.group({
@@ -63,7 +71,7 @@ export class NewFarmerComponent {
     });
 
     this.secondFormGroup = this.fb.group({
-      addressZipCode: new FormControl('', Validators.required),
+      addressZipCode: ['', Validators.required],
       addressStreet: ['', Validators.required],
       addressNumber: ['', Validators.required],
       addressComplement: [''],
@@ -229,8 +237,6 @@ export class NewFarmerComponent {
       height: '350px',
       width: '400px',
     });
-
-    dialogRef.afterClosed().subscribe((res) => {});
   }
 
   public addCultivationMethod(): void {
@@ -261,5 +267,29 @@ export class NewFarmerComponent {
       height: '350px',
       width: '400px',
     });
+  }
+
+  public searchZipCode() {
+    this.zipCodeService.getZipCode(this.zipCode).subscribe((data: any) => {
+      // Acesse os campos do endereço conforme necessário
+      this.addressStreet = data.logradouro;
+      this.addressDistrict = data.bairro;
+      this.addressCity = data.localidade;
+      this.addressState = data.uf;
+
+      // * O formulário é preenchido com os dados pesquisados do CEP digitado.
+      // ! Essa é a importância do patchValue, resgatar dados de serviço.
+      // * Está em português pois é onde o serviço é Brasileiro e assim que os dados são enviados
+      this.secondFormGroup.patchValue({
+        addressStreet: data.logradouro,
+        addressDistrict: data.bairro,
+        addressCity: data.localidade,
+        addressState: data.uf,
+      });
+    });
+  }
+
+  public blur(event: any) {
+    this.searchZipCode();
   }
 }
