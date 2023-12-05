@@ -7,7 +7,7 @@ Este projeto foi de uma iniciativa privada que não teve andamento pra frente, c
 
 ## COMO CLONAR O CÓDIGO - ETAPAS
 ```diff
-- Antes de clonar, vá até a branch master
+- Antes de clonar, por favor, troque para a branch master
 ```
 
 Clique no botão Code, da cor verde
@@ -63,7 +63,9 @@ senha: 12345678
 This project was create from a private entreprise, for particular reason, the project was canceled, as the initial project was create for me, and not used private data from users, I got permission to disponible the code.
 
 ## HOW TO CLONE
-Before to clone, please, change to master branch
+```diff
+- Before to clone, please, change to master branch
+```
 
 Click on button green, written Code
 
