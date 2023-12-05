@@ -6,7 +6,9 @@ This project was generated with Angular CLI version 14.2.11.
 Este projeto foi de uma iniciativa privada que não teve andamento pra frente, como o projeto inicial foi feito por mim, e sem dados privados de usuários, consegui permissão para disponibilizar esse código.
 
 ## COMO CLONAR O CÓDIGO - ETAPAS
-!! Antes de clonar, vá até a branch master
+```diff
+- Antes de clonar, vá até a branch master
+```
 
 Clique no botão Code, da cor verde
 
