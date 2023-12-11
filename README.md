@@ -3,7 +3,16 @@ This project was generated with Angular CLI version 14.2.11.
 
 ## PORTUGUESE VERSION
 ## DESCRIÇÃO
-Este projeto foi de uma iniciativa privada que não teve andamento pra frente, como o projeto inicial foi feito por mim, e sem dados privados de usuários, consegui permissão para disponibilizar esse código.
+```diff
+- Projeto em andamento
+```
+
+Este projeto foi iniciado com o propósito de auxiliar fazendeiros no quesito de gerenciar melhor sua colheita e vendas.
+Algumas bibliotecas usadas:
+
+- Angular Material
+- Chart.js (Gráficos)
+
 
 ## COMO CLONAR O CÓDIGO - ETAPAS
 ```diff
@@ -60,7 +69,16 @@ senha: 12345678
 
 ## ENGLISH VERSION
 ## DESCRIPTION
-This project was create from a private entreprise, for particular reason, the project was canceled, as the initial project was create for me, and not used private data from users, I got permission to disponible the code.
+```diff
+- Project in progress
+```
+
+This project was created with the objective to assistant farmers in your harvest and sells.
+
+Some libraries used:
+
+- Angular Material
+- Chart.js (Grafics)
 
 ## HOW TO CLONE
 ```diff
